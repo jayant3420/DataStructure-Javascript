@@ -136,3 +136,5 @@ ll.insertAtLast(1);
 ll.reverseLinkedList();
 ll.printList();
 // console.log(ll);
+
+//Output:- 1 2 3 4 5
