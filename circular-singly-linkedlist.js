@@ -118,6 +118,30 @@ class CircularLinkedList {
       ptr = null;
     }
   }
+
+  /*Searching an Element*/
+  searchElement(element) {
+    if (!this.head) return;
+    else {
+      let temp = this.head;
+      let flag = 0;
+      let index = -1;
+      do {
+        index++;
+        if (temp.data === element) {
+          flag = 1;
+          break;
+        }
+        temp = temp.next;
+      } while (temp !== this.head);
+
+      if (flag === 0) {
+        return -1;
+      } else {
+        return index;
+      }
+    }
+  }
 }
 
 let ll = new CircularLinkedList();
@@ -134,6 +158,14 @@ ll.deleteAtLast();
 ll.deleteAtFront();
 ll.deleteAtIndex(4);
 ll.deleteAtIndex(0);
+
+/*Search for en element in circular linked list*/
+let indexForElement = ll.searchElement(2);
+if (indexForElement === -1) {
+  console.log("Element Not Found");
+} else {
+  console.log(`Element found at index : ${indexForElement}`);
+}
 
 // ll.deleteAtIndex(ll.size);
 ll.printList();
