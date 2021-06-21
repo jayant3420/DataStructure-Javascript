@@ -66,6 +66,7 @@ class CircularLinkedList {
     if (!this.head) return;
     else {
       this.head = this.head.next;
+      this.tail.next = this.head;
       this.size--;
     }
   }
@@ -75,10 +76,12 @@ class CircularLinkedList {
     if (!this.head) return;
     else {
       let ptr = this.head;
-      while (ptr.next.next !== null) {
+      while (ptr.next !== this.tail) {
         ptr = ptr.next;
       }
-      ptr.next = null;
+      this.tail = ptr;
+      this.tail.next = this.head;
+      ptr = null;
       this.size--;
     }
   }
@@ -126,6 +129,11 @@ ll.insertAtLast(4);
 ll.insertAtBegin(4);
 ll.insertAtBegin(5);
 ll.insertAtLast(0);
+ll.insertAtIndex(7, 3);
+ll.deleteAtLast();
+ll.deleteAtFront();
+ll.deleteAtIndex(4);
+ll.deleteAtIndex(0);
 
 // ll.deleteAtIndex(ll.size);
 ll.printList();
