@@ -9,7 +9,6 @@
 7) Insert Node in a sorted linked list in an order
 */
 
-
 "use strict";
 
 /*Creating Node*/
