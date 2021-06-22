@@ -6,7 +6,7 @@
 4) Delete Node from Front
 5) Delete Node from Last
 6) Delete Node at a certain Index Position
-7) Insert Node in a sorted linked list in an order
+7) Insert Node in a sorted linked list in an order 
 */
 
 "use strict";
