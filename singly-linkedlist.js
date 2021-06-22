@@ -21,6 +21,21 @@ class LinkedList {
     this.size++;
   }
 
+  /*Insert at Last*/
+  insertAtLast(data) {
+    if (!this.head) return;
+    else {
+      let lastNode = this.head;
+      while (lastNode.next !== null) {
+        lastNode = lastNode.next;
+      }
+      let current = new Node(data, null);
+      lastNode.next = current;
+      lastNode = current = null;
+      this.size++;
+    }
+  }
+
   /*Insert node at an Index*/
   insertAtIndex(data, index) {
     /*Checking if list is empty or index is out of range*/
@@ -35,7 +50,7 @@ class LinkedList {
         for (let i = 0; i < index - 1; i++) {
           ptr = ptr.next;
         }
-        let current = new Node(data);
+        let current = new Node(data, null);
         current.next = ptr.next;
         ptr.next = current;
         this.size++;
@@ -84,17 +99,22 @@ class LinkedList {
     }
   }
 
-  /*Insert at Last*/
-  insertAtLast(data) {
+  /*Inserting a node in sorted singly linked list*/
+  insertNodeSortedList(data) {
     if (!this.head) return;
     else {
-      let lastNode = this.head;
-      while (lastNode.next !== null) {
-        lastNode = lastNode.next;
+      let current = new Node(data, null);
+      let ptr = this.head;
+      if (data <= ptr.data) {
+        current.next = this.head;
+        this.head = current;
+      } else {
+        while (ptr.next.data < data) {
+          ptr = ptr.next;
+        }
+        current.next = ptr.next;
+        ptr.next = current;
       }
-      let current = new Node(data);
-      lastNode.next = current;
-      this.size++;
     }
   }
 
@@ -112,17 +132,16 @@ class LinkedList {
 }
 
 let ll = new LinkedList();
-ll.insertAtBegin(1);
-ll.insertAtBegin(2);
-ll.insertAtBegin(3);
-ll.insertAtLast(4);
-ll.insertAtIndex(5, 2);
-// ll.deleteAtFront();
-// ll.deleteAtLast();
+ll.insertAtBegin(25);
+ll.insertAtLast(30);
+ll.insertAtLast(54);
+ll.insertAtLast(72);
+ll.insertAtLast(80);
 
-ll.deleteAtIndex(ll.size);
+/*Insert Node in sorted List*/
+ll.insertNodeSortedList(75);
 
+/*Printing List*/
 ll.printList();
 
-console.log(ll.size);
 // console.log(ll);
