@@ -1,4 +1,6 @@
-/*Creating a Node*/
+"use strict";
+
+/*Creating Node*/
 class Node {
   constructor(prev = null, data, next = null) {
     this.prev = prev;
@@ -7,33 +9,39 @@ class Node {
   }
 }
 
-/*Creating a Doubly Linked List*/
-class DoublyLinkedList {
+/*Circular Singly Linked List*/
+class CircularDoublyLinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
     this.size = 0;
   }
 
-  /*insert node at begining*/
+  /*Insert Node at Begining*/
   insertAtBegin(data) {
     this.head = new Node(null, data, this.head);
     this.size++;
-    if (this.head.next === null) return;
-    else {
-      this.head.next.prev = this.head;
+    if (this.size === 1) {
+      this.head.next = this.head;
+      this.head.prev = this.head;
+      this.tail = this.head;
+      return;
     }
+    this.tail.next = this.head;
+    this.head.prev = this.tail;
+    this.head.next.prev = this.head;
   }
 
   /*Insert at Last*/
   insertAtLast(data) {
     if (!this.head) return;
     else {
-      let lastNode = this.head;
-      while (lastNode.next !== null) {
-        lastNode = lastNode.next;
-      }
-      let current = new Node(lastNode, data, null);
-      lastNode.next = current;
+      let current = new Node(null, data, null);
+      current.prev = this.tail;
+      this.tail.next = current;
+      current.next = this.head;
+      this.head.prev = current;
+      this.tail = current;
       this.size++;
     }
   }
@@ -53,6 +61,7 @@ class DoublyLinkedList {
           ptr = ptr.next;
         }
         let current = new Node(ptr, data, ptr.next);
+        current.prev = ptr;
         current.next.prev = current;
         ptr.next = current;
         this.size++;
@@ -65,7 +74,8 @@ class DoublyLinkedList {
     if (!this.head) return;
     else {
       this.head = this.head.next;
-      this.head.prev = null;
+      this.tail.next = this.head;
+      this.head.prev = this.tail;
       this.size--;
     }
   }
@@ -74,12 +84,16 @@ class DoublyLinkedList {
   deleteAtLast() {
     if (!this.head) return;
     else {
-      let ptr = this.head;
-      while (ptr.next.next !== null) {
-        ptr = ptr.next;
-      }
-      ptr.next.prev = null;
-      ptr.next = null;
+      // let ptr = this.head;
+      // while (ptr.next !== this.tail) {
+      //   ptr = ptr.next;
+      // }
+      // this.tail = ptr;
+      // this.tail.next = this.head;
+      // ptr = null;
+      this.tail = this.tail.prev;
+      this.tail.next = this.head;
+      this.head.prev = this.tail;
       this.size--;
     }
   }
@@ -104,55 +118,66 @@ class DoublyLinkedList {
     }
   }
 
-  /*Printing List Forward*/
-  printListForward() {
+  /*Printing List*/
+  printList() {
     let ptr = this.head;
     if (!ptr) return;
     else {
-      while (ptr) {
+      while (ptr !== this.tail) {
         console.log(ptr.data);
         ptr = ptr.next;
       }
+      console.log(ptr.data);
+      ptr = null;
     }
   }
 
-  /*Printing List Backward*/
-  printListBackward() {
-    let ptr = this.head;
-    if (!ptr) return;
+  /*Searching an Element*/
+  searchElement(element) {
+    if (!this.head) return;
     else {
-      /*Try to reaching to last node*/
-      while (ptr.next !== null) {
-        ptr = ptr.next;
-      }
+      let temp = this.head;
+      let flag = 0;
+      let index = -1;
+      do {
+        index++;
+        if (temp.data === element) {
+          flag = 1;
+          break;
+        }
+        temp = temp.next;
+      } while (temp !== this.head);
 
-      /*Printing all the nodes from the last node*/
-      while (ptr) {
-        console.log(ptr.data);
-        ptr = ptr.prev;
+      if (flag === 0) {
+        return -1;
+      } else {
+        return index;
       }
     }
   }
 }
 
-let ll = new DoublyLinkedList();
-
-ll.insertAtBegin(4);
-ll.insertAtBegin(3);
-ll.insertAtBegin(2);
+let ll = new CircularDoublyLinkedList();
 ll.insertAtBegin(1);
+ll.insertAtBegin(2);
+ll.insertAtBegin(3);
+ll.insertAtBegin(4);
 ll.insertAtLast(5);
-ll.insertAtLast(6);
-ll.insertAtIndex(7, 3);
+ll.insertAtIndex(8, 4);
 ll.deleteAtFront();
 ll.deleteAtLast();
-ll.deleteAtIndex(2);
+ll.deleteAtIndex(3);
 
-console.log("Printing List Forward Direction : ");
-ll.printListForward();
+/*Search for en element in circular linked list*/
+let indexForElement = ll.searchElement(8);
+if (indexForElement === -1) {
+  console.log("Element Not Found");
+} else {
+  console.log(`Element found at index : ${indexForElement}`);
+}
 
-console.log("Printing List in Backward Direction : ");
-ll.printListBackward();
+// ll.deleteAtIndex(ll.size);
+ll.printList();
 
-//console the node
+// console.log(ll.size);
 console.log(ll);
