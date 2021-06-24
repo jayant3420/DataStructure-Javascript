@@ -30,11 +30,17 @@ class PolynomialTerms {
       currentTerm = null;
     } else {
       let temp = this.head;
-      while (temp.exponent > currentTerm.exponent && temp.nextTerm !== null) {
+      while (
+        temp.nextTerm !== null &&
+        temp.nextTerm.exponent > currentTerm.exponent
+      ) {
         temp = temp.nextTerm;
       }
       /*Checking if inserting term having same exponent which already present in polynomial*/
-      if (temp.exponent === currentTerm.exponent) {
+      if (
+        temp.exponent === currentTerm.exponent ||
+        temp.nextTerm.exponent === currentTerm.exponent
+      ) {
         return; //Simply Return
       }
 
@@ -65,10 +71,10 @@ class PolynomialTerms {
 let polynomial = new PolynomialTerms();
 
 /*Input Given*/
-polynomial.insertTerm(4, 3);
-polynomial.insertTerm(3, 2);
-polynomial.insertTerm(8, 1);
 polynomial.insertTerm(5);
+polynomial.insertTerm(3, 2);
+polynomial.insertTerm(4, 3);
+polynomial.insertTerm(8, 1);
 
 //This following input-terms will be excluded because exponent = 1 is already present in polynomial
 polynomial.insertTerm(8, 1);
@@ -76,6 +82,7 @@ polynomial.insertTerm(10, 1);
 
 //This will also excluded
 polynomial.insertTerm(8, 3);
+polynomial.insertTerm(5);
 
 //Printing polynomial
 polynomial.printPolynomial();
