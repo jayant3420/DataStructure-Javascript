@@ -145,3 +145,15 @@ polynomial2.printPolynomial();
 let addition = new additionPolynomial(polynomial1.head, polynomial2.head);
 addition.additionPolynomial();
 addition.printResultPolynomial();
+
+/*
+    -- Output --
+
+    Polynomial One:
+    7,6 =>5,3 =>2,2 =>1,1 =>null
+    Polynomial Two:
+    6,7 =>5,6 =>2,3 =>4,2 =>5,1 =>5,0 =>null
+
+    Final Resultant Polynomial:
+    6,7 =>12,6 =>7,3 =>6,2 =>6,1 =>5,0 =>null
+*/
