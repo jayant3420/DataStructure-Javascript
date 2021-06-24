@@ -39,7 +39,8 @@ class PolynomialTerms {
       /*Checking if inserting term having same exponent which already present in polynomial*/
       if (
         temp.exponent === currentTerm.exponent ||
-        temp.nextTerm.exponent === currentTerm.exponent
+        (temp.nextTerm !== null &&
+          temp.nextTerm.exponent === currentTerm.exponent)
       ) {
         return; //Simply Return
       }
