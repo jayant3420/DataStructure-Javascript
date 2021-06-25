@@ -237,3 +237,8 @@ console.log("Final Sum : ");
 let finalResult = new sumTwoNumbers(num1.head, num2.head);
 finalResult.addTwoNumbers();
 finalResult.printList();
+
+/*
+  --Output--
+  1 0 0 9 9 8
+*/
