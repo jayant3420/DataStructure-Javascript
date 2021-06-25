@@ -134,3 +134,13 @@ polynomial2.printPolynomial();
 let mul = new multiplyPolynomials(polynomial1.head, polynomial2.head);
 mul.multiplicationPoly();
 mul.printPolynomial();
+
+/*
+    --Output--
+
+    Polynomial One:
+    4,7 =>2,6 =>5,4 =>3,2 =>1,1 =>null
+    Polynomial Two:
+    5,6 =>2,3 =>null
+    20,13 =>10,12 =>33,10 =>4,9 =>15,8 =>15,7 =>6,5 =>2,4 =>null
+*/
