@@ -240,5 +240,21 @@ finalResult.printList();
 
 /*
   --Output--
-  1 0 0 9 9 8
+  Number 1 : 
+  9
+  9
+  9
+  9
+  9
+  Number 2 : 
+  9
+  9
+  9
+  Final Sum : 
+  1
+  0
+  0
+  9
+  9
+  8
 */
