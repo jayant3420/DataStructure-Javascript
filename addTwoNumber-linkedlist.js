@@ -225,18 +225,21 @@ console.log("Number 1 : ");
 let num1 = new LinkedList();
 num1.insertNumDigit(99999);
 num1.reverseList();
-num1.printList();
+// num1.printList();
+console.log(num1);
 
 console.log("Number 2 : ");
 let num2 = new LinkedList();
 num2.insertNumDigit(999);
 num2.reverseList();
-num2.printList();
+// num2.printList();
+console.log(num2);
 
 console.log("Final Sum : ");
 let finalResult = new sumTwoNumbers(num1.head, num2.head);
 finalResult.addTwoNumbers();
-finalResult.printList();
+// finalResult.printList();
+console.log(finalResult);
 
 /*
   --Output--
